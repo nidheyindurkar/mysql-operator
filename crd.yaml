@@ -8,18 +8,18 @@ spec:
   group: magalix.com
   version: v1
     validation:
-    openAPIV3Schema:
-      properties:
-        spec:
-          properties:
-            configMap:
-              type: string
-              description: "Name of the ConfigMap to watch for changes"
-            podSelector:
-              type: object
-              description: "Label selector used for selecting Pods"
-              additionalProperties:
+      openAPIV3Schema:
+        properties:
+          spec:
+            properties:
+              configMap:
                 type: string
+                description: "Name of the ConfigMap to watch for changes"
+              podSelector:
+                type: object
+                description: "Label selector used for selecting Pods"
+                additionalProperties:
+                  type: string
   names:
     kind: ConfigMonitor
     singular: configmonitor
