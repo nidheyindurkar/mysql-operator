@@ -61,7 +61,7 @@ spec:
               description: "configMap.yaml"
             podSelector:
               type: object
-              description: "operator"
+              description: "frontend"
               additionalProperties:
                 type: string
   # either Namespaced or Cluster
