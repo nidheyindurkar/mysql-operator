@@ -11,7 +11,7 @@ spec:
     kind: ConfigMonitor
     singular: configmonitor
     plural: configmonitors
-  validation:
+  schema:
     openAPIV3Schema:
       properties:
         spec:
