@@ -7,12 +7,12 @@ spec:
   scope: Namespaced
   group: magalix.com
   version: v1
-  names:
-    kind: ConfigMonitor
-    singular: configmonitor
-    plural: configmonitors
-  schema:
-    openAPIV3Schema:
+    names:
+      kind: ConfigMonitor
+      singular: configmonitor
+      plural: configmonitors
+    schema:
+      openAPIV3Schema:
       properties:
         spec:
           properties:
