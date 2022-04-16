@@ -4,4 +4,4 @@ metadata:
   name: flaskapp-config
 data:
   config.cfg: 
-    MSG="Welcome to Kubernetes!"
+    MSG="Welcome to Kubernetes Hola"

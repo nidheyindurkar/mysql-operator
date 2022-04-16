@@ -1,3 +1,4 @@
+from tkinter import EventType
 import requests
 import os
 import json
@@ -66,11 +67,13 @@ def event_loop():
     url = '{}/api/v1/namespaces/{}/configmaps?watch=true"'.format(
         base_url, namespace)
     r = requests.get(url, stream=True)
+    print(url)
     # We issue the request to the API endpoint and keep the conenction open
     for line in r.iter_lines():
         obj = json.loads(line)
-        # We examine the type part of the object to see if it is MODIFIED
+        log.info(obj)
         event_type = obj['type']
+        # We examine the type part of the object to see if it is MODIFIED
         # and we extract the configmap name because we'll need it later
         configmap_name = obj["object"]["metadata"]["name"]
         if event_type == "MODIFIED":
