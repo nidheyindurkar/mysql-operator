@@ -1,39 +1,72 @@
----
+# ---
+# apiVersion: apiextensions.k8s.io/v1
+# kind: CustomResourceDefinition
+# metadata:
+#   name: configmonitors.magalix.com
+# spec:
+#   scope: Namespaced
+#   group: magalix.com
+#   version: v1
+#   names:
+#     kind: ConfigMonitor
+#     singular: configmonitor
+#     plural: configmonitors
+#   validation:
+#     openAPIV3Schema:
+#       properties:
+#         spec:
+#           properties:
+#             configMap:
+#               type: string
+#               description: "Name of the ConfigMap to watch for changes"
+#             podSelector:
+#               type: object
+#               description: "Label selector used for selecting Pods"
+#               additionalProperties:
+#                 type: string
+# ---
+# apiVersion: rbac.authorization.k8s.io/v1
+# kind: Role
+# metadata:
+#   name: config-monitor-crd
+# rules:
+# - apiGroups:
+#   - magalix.com
+#   resources:
+#   - configmonitor
+#   - configmonitor/finalizers
+#   verbs: [ get, list, create, update, delete, deletecollection, watch ]
+
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
+  # name must match the spec fields below, and be in the form: <plural>.<group>
   name: configmonitors.magalix.com
 spec:
-  scope: Namespaced
+  # group name to use for REST API: /apis/<group>/<version>
   group: magalix.com
-  version: v1
-    validation:
-      openAPIV3Schema:
-        properties:
-          spec:
-            properties:
-              configMap:
+  # list of versions supported by this CustomResourceDefinition
+  versions:
+    - name: v1
+      # Each version can be enabled/disabled by Served flag.
+      served: true
+      # One and only one version must be marked as the storage version.
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            configMap:
+              type: string
+              description: "configMap.yaml"
+            podSelector:
+              type: object
+              description: "operator"
+              additionalProperties:
                 type: string
-                description: "Name of the ConfigMap to watch for changes"
-              podSelector:
-                type: object
-                description: "Label selector used for selecting Pods"
-                additionalProperties:
-                  type: string
+  # either Namespaced or Cluster
+  scope: Namespaced
   names:
     kind: ConfigMonitor
     singular: configmonitor
     plural: configmonitors
-  
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: config-monitor-crd
-rules:
-- apiGroups:
-  - magalix.com
-  resources:
-  - configmonitor
-  - configmonitor/finalizers
-  verbs: [ get, list, create, update, delete, deletecollection, watch ]
