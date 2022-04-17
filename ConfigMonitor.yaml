@@ -6,3 +6,4 @@ spec:
   configmap: flaskapp-config
   podSelector:
     app: frontend
+    

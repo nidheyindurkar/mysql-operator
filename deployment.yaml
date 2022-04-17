@@ -18,7 +18,7 @@ spec:
         image: lachlanevenson/k8s-kubectl
         command: ["kubectl","proxy","--port=8001"]
       - name: app
-        image: magalixcorp/operator
+        image: nidhey27/configmap-operator:latest
         env:
           - name: res_namespace
             valueFrom:
