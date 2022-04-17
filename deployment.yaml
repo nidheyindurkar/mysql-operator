@@ -13,6 +13,7 @@ spec:
       labels:
         app: operator
     spec:
+      serviceAccountName: crd-controller
       containers:
       - name: proxycontainer
         image: lachlanevenson/k8s-kubectl
